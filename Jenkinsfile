@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     parameters {
-        string(name: 'tomcat_dev', defaultValue: 'http://localhost:8090', description: 'Staging Server')
-        string(name: 'tomcat_dev', defaultValue: 'http://localhost:9090', description: 'Production Server')
+        string(name: 'tomcat_stage', defaultValue: '/Users/chezavr/Downloads/apache-tomcat-8.5.34-staging', description: 'Staging Server')
+        string(name: 'tomcat_prod', defaultValue: 'Users/chezavr/Downloads/apache-tomcat-8.5.34-prod', description: 'Production Server')
     }
 
     triggers {
@@ -27,15 +27,15 @@ pipeline {
             parallel {
                 stage ('Deploy to Staging') {
                     steps {
-                        sh "rm /Users/chezavr/Downloads/apache-tomcat-8.5.34-staging/webapps/*.war"
-                        sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-staging/webapps"
+                        sh "rm ${params.tomcat_stage}/webapps/*.war" 
+                        sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war ${params.tomcat_stage}/webapps"
                     }
                 }
 
                 stage ("Deploy to Production") {
                     steps {
-                        sh "rm /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps/*.war"
-                        sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
+                        sh "rm ${params.tomcat_prod}/webapps/*.war"
+                        sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war ${params.tomcat_prod}/webapps"
                     }
                 }
             }
