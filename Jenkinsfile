@@ -20,7 +20,7 @@ pipeline {
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: "${relative_target_path}/*.war"
+                    archiveArtifacts artifacts: "${params.relative_target_path}/*.war"
                 }
             }
         }
