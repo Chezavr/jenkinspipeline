@@ -3,7 +3,7 @@ pipeline {
     
     parameters {
         string(name: 'tomcat_stage', defaultValue: '/Users/chezavr/Downloads/apache-tomcat-8.5.34-staging', description: 'Staging Server')
-        string(name: 'tomcat_prod', defaultValue: 'Users/chezavr/Downloads/apache-tomcat-8.5.34-prod', description: 'Production Server')
+        string(name: 'tomcat_prod', defaultValue: '/Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps', description: 'Production Server')
     }
 
     triggers {
