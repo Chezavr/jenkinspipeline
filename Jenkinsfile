@@ -27,12 +27,14 @@ pipeline {
             parallel {
                 stage ('Deploy to Staging') {
                     steps {
-                        sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
+                        sh "rm /Users/chezavr/Downloads/apache-tomcat-8.5.34-staging/webapps/*.war"
+                        sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-staging/webapps"
                     }
                 }
 
                 stage ("Deploy to Production") {
                     steps {
+                        sh "rm /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps/*.war"
                         sh "cp -i /Users/chezavr/.jenkins/workspace/fully_automated/webapp/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
                     }
                 }
