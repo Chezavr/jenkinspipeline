@@ -27,13 +27,13 @@ pipeline {
             parallel {
                 stage ('Deploy to Staging') {
                     steps {
-                        sh "cp -i **/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
+                        sh "cp -i **/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
                     }
                 }
 
                 stage ("Deploy to Production") {
                     steps {
-                        sh "cp -i **/target/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
+                        sh "cp -i **/*.war /Users/chezavr/Downloads/apache-tomcat-8.5.34-prod/webapps"
                     }
                 }
             }
